@@ -1,0 +1,31 @@
+.pagination {
+  ul{
+    gap: 8px;
+  }
+
+  li{
+    background-color: #FFFFFF;
+    border: 1px solid #EAEBED;
+    border-radius: 4px;
+    height: 32px;
+
+    button{
+      margin: 0;
+    }
+
+    button > Mui-selected{
+      background-color: #5E96FC;
+      color: #FFFFFF;
+    }
+  }
+
+  li:first-child, li:last-child {
+    button {
+      color: #7B7C88;
+    }
+
+    button:disabled {
+      color: #D5D6DC;
+    }
+  }
+}

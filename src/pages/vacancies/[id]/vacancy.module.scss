@@ -1,0 +1,120 @@
+.vacancy_item {
+  background-color: #FFFFFF;
+  border: 1px solid #EAEBED;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vacancy_heading {
+  display: flex;
+  justify-content: space-between;
+
+  svg {
+    cursor: pointer;
+  }
+}
+
+.vacancy_title {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 34px;
+}
+
+.vacancy_description {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.vacancy_salary {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #7B7C88;
+}
+
+.vacancy_workTime {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.vacancy_location {
+  display: flex;
+  gap: 8px;
+
+  p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+.vacancy_full_description {
+  background-color: #FFFFFF;
+  border: 1px solid #EAEBED;
+  border-radius: 12px;
+  padding: 4px 24px 24px;
+  margin-top: 20px;
+
+  p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  b {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    margin-top: 20px;
+    margin-bottom: 16px;
+  }
+
+  ul {
+    margin-left: 25px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+.vacancy_full_description_item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &_title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  &_list {
+    margin-left: 35px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+.description_title {
+  color: red;
+}
+
+.content_centre{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}

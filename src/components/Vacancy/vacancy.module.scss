@@ -1,0 +1,74 @@
+.vacancy_item {
+  background-color: #FFFFFF;
+  border: 1px solid #EAEBED;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vacancy_heading {
+  display: flex;
+  justify-content: space-between;
+
+  svg {
+    cursor: pointer;
+  }
+}
+
+.vacancy_title {
+  color: #5E96FC;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.vacancy_description {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.vacancy_salary {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #7B7C88;
+}
+
+.vacancy_workTime {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.vacancy_location {
+  display: flex;
+  gap: 8px;
+
+  p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+  }
+}
+
+.empty_star {
+  color: #ACADB9;
+
+  &:hover {
+    color: #5E96FC;
+  }
+}
+
+.star {
+  color: #5E96FC;
+}
