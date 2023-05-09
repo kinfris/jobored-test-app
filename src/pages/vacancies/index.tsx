@@ -47,12 +47,39 @@ const defaultFilters: FiltersType = {
 }
 
 export default function Vacancies({data, vacanciesAmount}: Props) {
-    const [vacancies, setVacancies] = useState<Array<VacancyType>>(data)
+    const [vacancies, setVacancies] = useState<Array<VacancyType> | null>(null)
     const [filters, setFilters] = useState(defaultFilters)
     const [searchingVacancy, setSearchingVacancy] = useState('')
-    const [vacanciesCount, setVacanciesCount] = useState(vacanciesAmount);
+    const [vacanciesCount, setVacanciesCount] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
+
+
+    useEffect(() => {
+        const asyncFunc = async () => {
+            setIsLoading(true)
+            try {
+                const response = await VacancyService.getVacancies();
+                const data = response.data.objects.map((vacancyDescription: any) => {
+                    return {
+                        id: vacancyDescription.id,
+                        profession: vacancyDescription.profession,
+                        payment_from: vacancyDescription.payment_from,
+                        currency: vacancyDescription.currency,
+                        schedule: vacancyDescription.type_of_work.title,
+                        location: vacancyDescription.town.title,
+                    }
+                })
+                setVacancies(data);
+                setVacanciesCount(response.data.total);
+            } catch (e) {
+
+            } finally {
+                setIsLoading(false)
+            }
+        }
+        asyncFunc()
+    }, [])
 
     const applyFilters = async () => {
         setIsLoading(true)
@@ -129,7 +156,7 @@ export default function Vacancies({data, vacanciesAmount}: Props) {
     const NotFoundVacancies = () => {
         return (
             <>
-                {vacancies.length === 0
+                {!vacancies
                     ? <div className={styles.not_found}>
                         <Image alt={'not found'} src={not_found}/>
                         <p className={styles.not_found_text}>Упс, вакансий с такими параметрами не найдены!</p>
@@ -187,20 +214,20 @@ export default function Vacancies({data, vacanciesAmount}: Props) {
     )
 }
 
-export async function getServerSideProps() {
-    const response = await VacancyService.getVacancies();
-    const data = response.data.objects.map((vacancyDescription: any) => {
-        return {
-            id: vacancyDescription.id,
-            profession: vacancyDescription.profession,
-            payment_from: vacancyDescription.payment_from,
-            currency: vacancyDescription.currency,
-            schedule: vacancyDescription.type_of_work.title,
-            location: vacancyDescription.town.title,
-        }
-    })
-    const vacanciesAmount = response.data.total;
-
-
-    return {props: {data, vacanciesAmount}}
-}
+// export async function getServerSideProps() {
+//     const response = await VacancyService.getVacancies();
+//     const data = response.data.objects.map((vacancyDescription: any) => {
+//         return {
+//             id: vacancyDescription.id,
+//             profession: vacancyDescription.profession,
+//             payment_from: vacancyDescription.payment_from,
+//             currency: vacancyDescription.currency,
+//             schedule: vacancyDescription.type_of_work.title,
+//             location: vacancyDescription.town.title,
+//         }
+//     })
+//     const vacanciesAmount = response.data.total;
+//
+//
+//     return {props: {data, vacanciesAmount}}
+// }
