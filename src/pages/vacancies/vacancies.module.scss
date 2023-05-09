@@ -74,3 +74,15 @@
   flex-direction: column;
   gap: 16px;
 }
+
+.not_found{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  color: #343A40;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+}

@@ -79,7 +79,9 @@ export const VacancyService = {
     },
 
     async getCatalogues() {
-        const response = await $api('/catalogues/parent/33')
+        const response = await $api('/catalogues/parent/33', {
+            maxRedirects: 2,
+        })
         return response
     },
 

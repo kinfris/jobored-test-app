@@ -105,9 +105,20 @@ type PropsType = {
     value: { value: string, label: string, isHidden?: boolean, key?: number };
     callback: (name: string, value: string | number) => void;
 }
+const defaultMappedCatalogues = defaultOptions.map((catalog: {
+    title_rus: string;
+    url_rus: string;
+    title: string;
+    id_parent: number;
+    key: number;
+}) => ({
+    value: catalog.title_rus,
+    label: catalog.title_rus,
+    key: catalog.key
+}))
 
 export function CustomSelect({name, value, callback}: PropsType) {
-    const [options, setOptions] = useState<Array<{ value: string, label: string, key: number }>>([]);
+    const [options, setOptions] = useState<Array<{ value: string, label: string, key: number }>>(defaultMappedCatalogues);
 
     useEffect(() => {
         const asyncFunc = async () => {
@@ -122,18 +133,7 @@ export function CustomSelect({name, value, callback}: PropsType) {
                 }) => ({value: catalog.title_rus, label: catalog.title_rus, key: catalog.key}))
                 setOptions(mappedCatalogues);
             } catch (e) {
-                const mappedCatalogues = defaultOptions.map((catalog: {
-                    title_rus: string;
-                    url_rus: string;
-                    title: string;
-                    id_parent: number;
-                    key: number;
-                }) => ({
-                    value: catalog.title_rus,
-                    label: catalog.title_rus,
-                    key: catalog.key
-                }))
-                setOptions(mappedCatalogues)
+
             }
 
         }

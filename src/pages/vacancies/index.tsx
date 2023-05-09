@@ -6,10 +6,11 @@ import {InputSearch} from "@/components/SearchInput/searchInput";
 import Image from "next/image";
 import cross from '../../../public/cross.svg'
 import {Vacancy} from "@/components/Vacancy/Vacancy";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {VacancyService} from "@/Http/vacancies";
 import {PaginationContainer} from "@/components/PagitationContainer/pagitanionContainer";
 import {LinearProgress} from "@mui/material";
+import not_found from "../../../public/not_found.png";
 
 
 type Props = {
@@ -24,21 +25,30 @@ type Props = {
     vacanciesAmount: number;
 }
 
-type StateType = {
+type VacancyType = {
+    id: number;
+    profession: string;
+    payment_from: number;
+    currency: string;
+    schedule: string;
+    location: string;
+}
+
+type FiltersType = {
     department: { value: string, label: string, isHidden?: boolean, key?: number };
     salaryFrom: string | number;
     salaryTo: string | number;
 }
 
-const defaultState: StateType = {
+const defaultFilters: FiltersType = {
     department: {value: '', label: 'Выберите отрасль', isHidden: true},
     salaryFrom: '',
     salaryTo: '',
 }
 
 export default function Vacancies({data, vacanciesAmount}: Props) {
-    const [vacancies, setVacancies] = useState(data)
-    const [state, setState] = useState(defaultState)
+    const [vacancies, setVacancies] = useState<Array<VacancyType>>(data)
+    const [filters, setFilters] = useState(defaultFilters)
     const [searchingVacancy, setSearchingVacancy] = useState('')
     const [vacanciesCount, setVacanciesCount] = useState(vacanciesAmount);
     const [currentPage, setCurrentPage] = useState(1);
@@ -48,9 +58,9 @@ export default function Vacancies({data, vacanciesAmount}: Props) {
         setIsLoading(true)
         try {
             const {data} = await VacancyService.getVacancies({
-                salaryFrom: state.salaryFrom,
-                salaryTo: state.salaryTo,
-                catalogues: state.department.key,
+                salaryFrom: filters.salaryFrom,
+                salaryTo: filters.salaryTo,
+                catalogues: filters.department.key,
                 keyword: searchingVacancy
             });
             setVacancies(data.objects);
@@ -66,27 +76,34 @@ export default function Vacancies({data, vacanciesAmount}: Props) {
     }
 
     const changeStateValue = (name: string, value: string | number) => {
-        setState({
-            ...state,
+        setFilters({
+            ...filters,
             [name]: value
         })
     }
 
     const clearAllFilters = async () => {
-        setState(defaultState);
-        setSearchingVacancy('');
-        const {data} = await VacancyService.getVacancies();
-        setVacancies(data.objects);
-        setVacanciesCount(data.total);
-        setCurrentPage(1);
+        setIsLoading(true);
+        try{
+            const {data} = await VacancyService.getVacancies();
+            setVacancies(data.objects);
+            setVacanciesCount(data.total);
+            setCurrentPage(1);
+            setFilters(defaultFilters);
+            setSearchingVacancy('');
+        }catch (e){
+
+        }finally {
+            setIsLoading(false);
+        }
     }
 
     const searchKeywordHandler = async (value: string) => {
         setSearchingVacancy(value);
         const {data} = await VacancyService.getVacancies({
-            salaryFrom: state.salaryFrom,
-            salaryTo: state.salaryTo,
-            catalogues: state.department.key,
+            salaryFrom: filters.salaryFrom,
+            salaryTo: filters.salaryTo,
+            catalogues: filters.department.key,
             keyword: value
         });
         setVacancies(data.objects);
@@ -98,15 +115,42 @@ export default function Vacancies({data, vacanciesAmount}: Props) {
         if (value !== currentPage) {
             setCurrentPage(value);
             const {data} = await VacancyService.getVacancies({
-                salaryFrom: state.salaryFrom,
-                salaryTo: state.salaryTo,
-                catalogues: state.department.key,
+                salaryFrom: filters.salaryFrom,
+                salaryTo: filters.salaryTo,
+                catalogues: filters.department.key,
                 keyword: searchingVacancy,
                 page: value,
             });
             setVacancies(data.objects);
             setVacanciesCount(data.total);
         }
+    }
+
+    const NotFoundVacancies = () => {
+        return (
+            <>
+                {vacancies.length === 0
+                    ? <div className={styles.not_found}>
+                        <Image alt={'not found'} src={not_found}/>
+                        <p className={styles.not_found_text}>Упс, вакансий с такими параметрами не найдены!</p>
+                    </div>
+                    : <div className={styles.vacancies_wrapper}>{vacancies.map(vacancy => {
+                        return (
+                            <div key={vacancy.id}>
+                                {
+                                    vacancy && <Vacancy vacancy={vacancy}/>
+                                }
+                            </div>
+                        )
+                    })}
+                        {vacanciesCount > 4 &&
+                            <div className={styles.pagination}><PaginationContainer page={currentPage}
+                                                                                    count={vacanciesCount}
+                                                                                    callback={onChangePage}/></div>}
+                    </div>}
+
+            </>
+        )
     }
 
     return (
@@ -122,13 +166,14 @@ export default function Vacancies({data, vacanciesAmount}: Props) {
                 <div className={styles.filters_item}>
                     <p className={styles.filters_type}>Отрасль</p>
                     <div className={styles.select_wrapper}>
-                        <CustomSelect name={'department'} value={state.department} callback={changeStateValue}/>
+                        <CustomSelect name={'department'} value={filters.department} callback={changeStateValue}/>
                     </div>
                 </div>
                 <div className={styles.filters_item}>
                     <p className={styles.filters_type}>Оклад</p>
-                    <NumberInput title={'От'} name={'salaryFrom'} value={state.salaryFrom} callback={changeStateValue}/>
-                    <NumberInput title={'До'} name={'salaryTo'} value={state.salaryTo} callback={changeStateValue}/>
+                    <NumberInput title={'От'} name={'salaryFrom'} value={filters.salaryFrom}
+                                 callback={changeStateValue}/>
+                    <NumberInput title={'До'} name={'salaryTo'} value={filters.salaryTo} callback={changeStateValue}/>
                 </div>
                 <CustomButton content='Применить' callback={applyFilters} fullwidth/>
             </div>
@@ -136,20 +181,7 @@ export default function Vacancies({data, vacanciesAmount}: Props) {
                 <InputSearch callback={searchKeywordHandler}/>
                 {isLoading
                     ? <LinearProgress sx={{width: "100%"}}/>
-                    : <div className={styles.vacancies_wrapper}>{vacancies.map(vacancy => {
-                        return (
-                            <div key={vacancy.id}>
-                                {
-                                    vacancy && <Vacancy vacancy={vacancy}/>
-                                }
-                            </div>
-                        )
-                    })}
-                        {vacanciesAmount > 4 &&
-                            <div className={styles.pagination}><PaginationContainer page={currentPage}
-                                                                                    count={vacanciesCount}
-                                                                                    callback={onChangePage}/></div>}
-                    </div>}
+                    : <NotFoundVacancies/>}
             </div>
         </div>
     )
