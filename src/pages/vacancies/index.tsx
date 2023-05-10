@@ -4,26 +4,14 @@ import {NumberInput} from "@/components/NumberInput/numberInput";
 import {CustomButton} from "@/components/CustomButton/customButton";
 import {InputSearch} from "@/components/SearchInput/searchInput";
 import Image from "next/image";
-import cross from '../../../public/cross.svg'
 import {Vacancy} from "@/components/Vacancy/Vacancy";
 import React, {useEffect, useState} from "react";
 import {VacancyService} from "@/Http/vacancies";
 import {PaginationContainer} from "@/components/PagitationContainer/pagitanionContainer";
 import {LinearProgress} from "@mui/material";
 import not_found from "../../../public/not_found.png";
+import {CrossIcon} from "@/components/icons/crossIcon";
 
-
-type Props = {
-    data: Array<{
-        id: number,
-        profession: string,
-        payment_from: number,
-        currency: string,
-        schedule: string,
-        location: string,
-    }>
-    vacanciesAmount: number;
-}
 
 type VacancyType = {
     id: number;
@@ -46,14 +34,13 @@ const defaultFilters: FiltersType = {
     salaryTo: '',
 }
 
-export default function Vacancies({data, vacanciesAmount}: Props) {
+export default function Vacancies() {
     const [vacancies, setVacancies] = useState<Array<VacancyType> | null>(null)
     const [filters, setFilters] = useState(defaultFilters)
     const [searchingVacancy, setSearchingVacancy] = useState('')
     const [vacanciesCount, setVacanciesCount] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
-
 
     useEffect(() => {
         const asyncFunc = async () => {
@@ -111,31 +98,38 @@ export default function Vacancies({data, vacanciesAmount}: Props) {
 
     const clearAllFilters = async () => {
         setIsLoading(true);
-        try{
+        try {
             const {data} = await VacancyService.getVacancies();
             setVacancies(data.objects);
             setVacanciesCount(data.total);
             setCurrentPage(1);
             setFilters(defaultFilters);
             setSearchingVacancy('');
-        }catch (e){
+        } catch (e) {
 
-        }finally {
+        } finally {
             setIsLoading(false);
         }
     }
 
     const searchKeywordHandler = async (value: string) => {
-        setSearchingVacancy(value);
-        const {data} = await VacancyService.getVacancies({
-            salaryFrom: filters.salaryFrom,
-            salaryTo: filters.salaryTo,
-            catalogues: filters.department.key,
-            keyword: value
-        });
-        setVacancies(data.objects);
-        setVacanciesCount(data.total);
-        setCurrentPage(1);
+        setIsLoading(true);
+        try {
+            setSearchingVacancy(value);
+            const {data} = await VacancyService.getVacancies({
+                salaryFrom: filters.salaryFrom,
+                salaryTo: filters.salaryTo,
+                catalogues: filters.department.key,
+                keyword: value
+            });
+            setVacancies(data.objects);
+            setVacanciesCount(data.total);
+            setCurrentPage(1);
+        } catch (e) {
+
+        } finally {
+            setIsLoading(false);
+        }
     }
 
     const onChangePage = async (value: number) => {
@@ -156,7 +150,7 @@ export default function Vacancies({data, vacanciesAmount}: Props) {
     const NotFoundVacancies = () => {
         return (
             <>
-                {!vacancies
+                {!vacancies || vacancies.length === 0
                     ? <div className={styles.not_found}>
                         <Image alt={'not found'} src={not_found}/>
                         <p className={styles.not_found_text}>Упс, вакансий с такими параметрами не найдены!</p>
@@ -187,7 +181,7 @@ export default function Vacancies({data, vacanciesAmount}: Props) {
                     <p className={styles.filters_heading}>Фильтры</p>
                     <div className={styles.clear} onClick={clearAllFilters}>
                         <p>Сбросить все</p>
-                        <Image src={cross} alt={''}/>
+                        <CrossIcon/>
                     </div>
                 </div>
                 <div className={styles.filters_item}>
@@ -213,21 +207,3 @@ export default function Vacancies({data, vacanciesAmount}: Props) {
         </div>
     )
 }
-
-// export async function getServerSideProps() {
-//     const response = await VacancyService.getVacancies();
-//     const data = response.data.objects.map((vacancyDescription: any) => {
-//         return {
-//             id: vacancyDescription.id,
-//             profession: vacancyDescription.profession,
-//             payment_from: vacancyDescription.payment_from,
-//             currency: vacancyDescription.currency,
-//             schedule: vacancyDescription.type_of_work.title,
-//             location: vacancyDescription.town.title,
-//         }
-//     })
-//     const vacanciesAmount = response.data.total;
-//
-//
-//     return {props: {data, vacanciesAmount}}
-// }

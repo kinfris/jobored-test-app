@@ -49,6 +49,9 @@
   width: 12px;
   height: 12px;
   color: #ACADB9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     color: #92C1FF;

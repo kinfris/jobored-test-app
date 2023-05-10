@@ -1,8 +1,7 @@
-import search from '../../../public/search.svg'
-import Image from 'next/image'
 import styles from './searchInput.module.scss'
 import {ChangeEvent, useState} from "react";
 import {CustomButton} from "@/components/CustomButton/customButton";
+import {SearchIcon} from "@/components/icons/searchIcon";
 
 type PropsType = {
     callback: (value: string) => void;
@@ -31,7 +30,7 @@ export function InputSearch({callback}: PropsType) {
     return (
         <div className={`${styles.wrapper} ${isActive && styles.wrapper_active}`}>
             <div className={styles.input_container}>
-                <Image src={search} alt=''/>
+                <SearchIcon/>
                 <input className={styles.input} placeholder='Введите название вакансии' onClick={onInputFocus}
                        onBlur={onInputBlur} value={state} onChange={onChangeHandler}/>
             </div>

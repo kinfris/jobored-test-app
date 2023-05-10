@@ -1,12 +1,11 @@
 import styles from "./vacancy.module.scss";
-import Image from "next/image";
-import location from "../../../../public/location.svg";
 import {VacancyService} from "@/Http/vacancies";
 import React, {useEffect, useState} from "react";
 import {LinearProgress} from "@mui/material";
 import {useRouter} from 'next/router';
 import {FilledStartIcon} from "@/components/icons/filledStarIcon";
 import {EmptyStartIcon} from "@/components/icons/epmptyStarIcon";
+import {LocationIcon} from "@/components/icons/LocationIcon";
 
 
 export default function Vacancy() {
@@ -119,7 +118,7 @@ export default function Vacancy() {
                     <div className={styles.vacancy_workTime}>{vacancy.schedule}</div>
                 </div>
                 <div className={styles.vacancy_location}>
-                    <Image src={location} alt={''}/>
+                    <LocationIcon/>
                     <p>{vacancy.location}</p>
                 </div>
             </div>

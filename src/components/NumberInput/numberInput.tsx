@@ -1,6 +1,7 @@
 import styles from './numberInput.module.scss'
 import {ChangeEvent, useState} from "react";
-import {KeyboardArrowUpRounded, KeyboardArrowDownRounded} from '@mui/icons-material';
+import {ButtonUpIcon} from "@/components/icons/buttonUpIcon";
+import {ButtonDownIcon} from "@/components/icons/buttonDownIcon";
 
 type PropsType = {
     title: string;
@@ -8,6 +9,8 @@ type PropsType = {
     value: string | number;
     callback: (name: string, value: string | number) => void;
 }
+
+
 
 export function NumberInput({title, name, value, callback}: PropsType) {
     const [isActive, setIsActive] = useState(false);
@@ -41,9 +44,9 @@ export function NumberInput({title, name, value, callback}: PropsType) {
             <input className={styles.input} placeholder={title} onClick={onInputFocus}
                    onBlur={onInputBlur} value={value} onChange={onChangeHandler}/>
             <div className={styles.buttons_wrapper}>
-                <KeyboardArrowUpRounded onClick={increment} className={styles.arrow}/>
-                <KeyboardArrowDownRounded onClick={decrement} className={styles.arrow}/>
+                <div onClick={increment} className={styles.arrow}><ButtonUpIcon/></div>
+                <div onClick={decrement} className={styles.arrow}><ButtonDownIcon/></div>
             </div>
         </div>
-    );
+    )
 }
