@@ -6,7 +6,6 @@ import {defaultOptions} from "@/components/Select/constants";
 export interface SelectOption {
     readonly value: string;
     readonly label: string;
-    readonly color?: string;
     readonly isFixed?: boolean;
     readonly isDisabled?: boolean;
     readonly isHidden?: boolean;
@@ -22,7 +21,7 @@ const selectStyles: StylesConfig<SelectOption, true> = {
                 border: '1px solid #5E96FC'
             },
             border: state.isFocused ? '1px solid #5E96FC' : '1px solid #D5D6DC',
-            boxShadow: state.isFocused && 'none'
+            boxShadow: state.isFocused && 'none',
         }
     },
     singleValue: (styles, {data,}) => {
@@ -145,7 +144,7 @@ export function CustomSelect({name, value, callback}: PropsType) {
     }
 
     return (
-        <>
+        <div data-elem="industry-select">
             <Select
                 className="basic-single"
                 classNamePrefix="select"
@@ -155,10 +154,10 @@ export function CustomSelect({name, value, callback}: PropsType) {
                 options={options}
                 onChange={onChangeHandler}
                 components={{
-                    IndicatorSeparator: () => null,
+                    IndicatorSeparator: () => null
                 }}
                 styles={selectStyles}
             />
-        </>
+        </div>
     )
 }

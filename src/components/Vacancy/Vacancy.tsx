@@ -66,8 +66,8 @@ export function Vacancy({vacancy, callback}: Props) {
             <div className={styles.vacancy_heading}>
                 <Link className={styles.vacancy_title}
                       href={`vacancies/${vacancy.id}`}>{vacancy.profession}</Link>
-                {!isFavorite ? <div onClick={addToFavorites}><EmptyStartIcon/></div> :
-                    <div onClick={removeFromFavorites}><FilledStartIcon/></div>}
+                {!isFavorite ? <div onClick={addToFavorites}><EmptyStartIcon data-elem={`vacancy-${vacancy.id}-shortlist-button`}/></div> :
+                    <div onClick={removeFromFavorites}><FilledStartIcon data-elem={`vacancy-${vacancy.id}-shortlist-button`}/></div>}
             </div>
             <div className={styles.vacancy_description}>
                 <div

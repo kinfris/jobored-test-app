@@ -1,5 +1,4 @@
 import styles from './vacancies.module.scss'
-import {CustomSelect} from "@/components/Select/select";
 import {NumberInput} from "@/components/NumberInput/numberInput";
 import {CustomButton} from "@/components/CustomButton/customButton";
 import {InputSearch} from "@/components/SearchInput/searchInput";
@@ -11,6 +10,7 @@ import {PaginationContainer} from "@/components/PagitationContainer/pagitanionCo
 import {LinearProgress} from "@mui/material";
 import not_found from "../../../public/not_found.png";
 import {CrossIcon} from "@/components/icons/crossIcon";
+import {MySelect} from "@/components/MySelect/mySelect";
 
 
 type VacancyType = {
@@ -23,13 +23,13 @@ type VacancyType = {
 }
 
 type FiltersType = {
-    department: { value: string, label: string, isHidden?: boolean, key?: number };
+    department: { label: string, isHidden?: boolean, key?: number };
     salaryFrom: string | number;
     salaryTo: string | number;
 }
 
 const defaultFilters: FiltersType = {
-    department: {value: '', label: 'Выберите отрасль', isHidden: true},
+    department: {label: 'Выберите отрасль', isHidden: true},
     salaryFrom: '',
     salaryTo: '',
 }
@@ -147,7 +147,7 @@ export default function Vacancies() {
         }
     }
 
-    const NotFoundVacancies = () => {
+    const VacanciesWrapper = () => {
         return (
             <>
                 {!vacancies || vacancies.length === 0
@@ -159,7 +159,7 @@ export default function Vacancies() {
                         return (
                             <div key={vacancy.id}>
                                 {
-                                    vacancy && <Vacancy vacancy={vacancy}/>
+                                    vacancy && <Vacancy vacancy={vacancy} data-elem={`vacancy-${vacancy.id}`}/>
                                 }
                             </div>
                         )
@@ -187,7 +187,7 @@ export default function Vacancies() {
                 <div className={styles.filters_item}>
                     <p className={styles.filters_type}>Отрасль</p>
                     <div className={styles.select_wrapper}>
-                        <CustomSelect name={'department'} value={filters.department} callback={changeStateValue}/>
+                        <MySelect name={'department'} value={filters.department} callback={changeStateValue}/>
                     </div>
                 </div>
                 <div className={styles.filters_item}>
@@ -202,7 +202,7 @@ export default function Vacancies() {
                 <InputSearch callback={searchKeywordHandler}/>
                 {isLoading
                     ? <LinearProgress sx={{width: "100%"}}/>
-                    : <NotFoundVacancies/>}
+                    : <VacanciesWrapper/>}
             </div>
         </div>
     )

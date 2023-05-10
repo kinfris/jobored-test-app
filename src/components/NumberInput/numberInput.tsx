@@ -11,7 +11,6 @@ type PropsType = {
 }
 
 
-
 export function NumberInput({title, name, value, callback}: PropsType) {
     const [isActive, setIsActive] = useState(false);
 
@@ -42,7 +41,8 @@ export function NumberInput({title, name, value, callback}: PropsType) {
     return (
         <div className={`${styles.wrapper} ${isActive && styles.wrapper_active}`}>
             <input className={styles.input} placeholder={title} onClick={onInputFocus}
-                   onBlur={onInputBlur} value={value} onChange={onChangeHandler}/>
+                   onBlur={onInputBlur} value={value} onChange={onChangeHandler}
+                   data-elem={name === 'От' ? 'salary-from-input' : 'salary-to-input'}/>
             <div className={styles.buttons_wrapper}>
                 <div onClick={increment} className={styles.arrow}><ButtonUpIcon/></div>
                 <div onClick={decrement} className={styles.arrow}><ButtonDownIcon/></div>

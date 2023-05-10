@@ -32,9 +32,9 @@ export function InputSearch({callback}: PropsType) {
             <div className={styles.input_container}>
                 <SearchIcon/>
                 <input className={styles.input} placeholder='Введите название вакансии' onClick={onInputFocus}
-                       onBlur={onInputBlur} value={state} onChange={onChangeHandler}/>
+                       onBlur={onInputBlur} value={state} onChange={onChangeHandler} data-elem="search-input"/>
             </div>
-            <CustomButton content='Поиск' callback={onSearchHandle}/>
+            <CustomButton content='Поиск' callback={onSearchHandle} data-elem="search-button"/>
         </div>
     );
 }

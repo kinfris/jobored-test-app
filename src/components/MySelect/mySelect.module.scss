@@ -1,0 +1,95 @@
+.chevron_icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  transition: .2s;
+}
+
+.reverse {
+  transform: rotate(180deg);
+
+  svg {
+    color: #5E96FC;
+  }
+}
+
+.control {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FFFFFF;
+  padding: 11px 12px;
+  border-radius: 8px;
+  border: 1px solid #D5D6DC;
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+
+  &:hover {
+    border: 1px solid #5E96FC;
+  }
+}
+
+.opened {
+  border: 1px solid #5E96FC;
+}
+
+.hidden {
+  color: #ACADB9;
+}
+
+.menu {
+  max-height: 188px;
+  overflow-y: scroll;
+  padding: 4px;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    margin-right: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #FFFFFF
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ACADB9;
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #ACADB9;
+  }
+}
+
+.active_option {
+  background-color: #5E96FC;
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+.option {
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  border-radius: 8px;
+
+  &:hover {
+    background-color: #DEECFF;
+    border-radius: 8px;
+  }
+
+  &:active {
+    background-color: #5E96FC;
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-weight: 500;
+  }
+}
+
+

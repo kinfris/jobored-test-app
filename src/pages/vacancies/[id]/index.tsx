@@ -109,8 +109,8 @@ export default function Vacancy() {
             <div className={styles.vacancy_item} key={vacancy.id}>
                 <div className={styles.vacancy_heading}>
                     <div className={styles.vacancy_title}>{vacancy.profession}</div>
-                    {!isFavorite ? <div onClick={addToFavorites}><EmptyStartIcon/></div> :
-                        <div onClick={removeFromFavorites}><FilledStartIcon/></div>}
+                    {!isFavorite ? <div onClick={addToFavorites}><EmptyStartIcon data-elem={`vacancy-${vacancy.id}-shortlist-button`}/></div> :
+                        <div onClick={removeFromFavorites}><FilledStartIcon data-elem={`vacancy-${vacancy.id}-shortlist-button`}/></div>}
                 </div>
                 <div className={styles.vacancy_description}>
                     <div className={styles.vacancy_salary}>з/п от {vacancy.payment_from} {vacancy.currency}</div>

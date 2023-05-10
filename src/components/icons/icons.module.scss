@@ -1,4 +1,4 @@
-.empty_star {
+.default_icon_color {
   color: #ACADB9;
 
   &:hover {
@@ -6,6 +6,10 @@
   }
 }
 
-.star {
+.active_icon_color {
   color: #5E96FC;
+}
+
+.select_icon{
+  color: #ACADB9;
 }
