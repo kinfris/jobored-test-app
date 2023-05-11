@@ -163,7 +163,7 @@ export default function Vacancies() {
                 {!vacancies || vacancies.length === 0
                     ? <div className={styles.not_found}>
                         <Image alt={'not found'} src={not_found}/>
-                        <p className={styles.not_found_text}>Упс, вакансий с такими параметрами не найдены!</p>
+                        <p className={styles.not_found_text}>Упс, вакансий с такими параметрами не найдено!</p>
                     </div>
                     : <div className={styles.vacancies_wrapper}>{vacancies.map(vacancy => {
                         return (
