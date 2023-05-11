@@ -1,3 +1,5 @@
+@import '@/styles/mixins.scss';
+
 .container {
   display: flex;
   gap: 28px;
@@ -23,7 +25,7 @@
 
 .filters {
   width: 315px;
-  height: 360px;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   background-color: #FFFFFF;
@@ -59,19 +61,19 @@
   gap: 16px;
 }
 
-.pagination{
+.pagination {
   margin-top: 40px;
   display: flex;
   justify-content: center;
 }
 
-.vacancies_wrapper{
+.vacancies_wrapper {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.not_found{
+.not_found {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -81,4 +83,176 @@
   font-weight: 700;
   font-size: 24px;
   line-height: 29px;
+}
+
+.open_close_filters_btn {
+  display: none;
+}
+
+
+@media screen and (max-width: 1439px) {
+  .container {
+    gap: vw(28px, 1440px);
+  }
+
+  .clear {
+    font-size: vw(14px, 1440px);
+    line-height: vw(20px, 1440px);
+  }
+
+  .filters {
+    width: vw(315px, 1440px);
+    padding: vw(20px, 1440px);
+
+    &_heading {
+      font-size: vw(20px, 1440px);
+      line-height: vw(20px, 1440px);
+      margin-bottom: vw(32px, 1440px);
+    }
+
+    &_item {
+      margin-bottom: vw(20px, 1440px);
+    }
+
+    &_type {
+      font-size: vw(16px, 1440px);
+      line-height: vw(19px, 1440px);
+    }
+  }
+
+  .vacancies_container {
+    width: calc(100% - #{vw(343px,1440px)});
+    gap: vw(14px, 1440px) 16px;
+  }
+
+  .pagination {
+    margin-top: vw(40px, 1440px);
+  }
+
+  .vacancies_wrapper {
+    gap: vw(16px, 1440px);
+  }
+
+  .not_found {
+    gap: vw(32px, 1440px);
+    font-size: vw(24px, 1440px);
+    line-height: vw(29px, 1440px);
+  }
+}
+
+
+@media screen and (max-width: 1000px) {
+  .container {
+    display: block;
+  }
+
+  .clear {
+    font-size: vw(14px, 1000px);
+    line-height: vw(20px, 1000px);
+  }
+
+  .filters {
+    display: none;
+    width: 315px;
+    padding: vw(20px, 1000px);
+    position: absolute;
+    height: 100%;
+    z-index: 1;
+
+    &_heading {
+      font-size: vw(20px, 1000px);
+      line-height: vw(20px, 1000px);
+      margin-bottom: vw(32px, 1000px);
+    }
+
+    &_item {
+      margin-bottom: vw(20px, 1000px);
+    }
+
+    &_type {
+      font-size: vw(16px, 1000px);
+      line-height: vw(19px, 1000px);
+    }
+  }
+
+  .vacancies_container {
+    width: 100%;
+    gap: vw(14px, 1000px) vw(16px, 1000px);
+  }
+
+  .pagination {
+    margin-top: vw(40px, 1000px);
+  }
+
+  .vacancies_wrapper {
+    gap: vw(16px, 1000px);
+  }
+
+  .not_found {
+    gap: vw(32px, 1000px);
+    font-size: vw(24px, 1000px);
+    line-height: vw(29px, 1000px);
+  }
+
+  .is_filters_opened {
+    display: block;
+  }
+
+  .open_close_filters_btn {
+    display: block;
+    margin-top: vw(20px, 1000px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    display: block;
+  }
+
+  .clear {
+    font-size: vw(14px);
+    line-height: vw(20px);
+  }
+
+  .filters {
+    width: 280px;
+    padding: vw(20px);
+
+    &_heading {
+      font-size: vw(20px);
+      line-height: vw(20px);
+      margin-bottom: vw(32px);
+    }
+
+    &_item {
+      margin-bottom: vw(20px);
+    }
+
+    &_type {
+      font-size: vw(16px);
+      line-height: vw(19px);
+    }
+  }
+
+  .vacancies_container {
+    gap: vw(14px) vw(16px);
+  }
+
+  .pagination {
+    margin-top: vw(40px);
+  }
+
+  .vacancies_wrapper {
+    gap: vw(16px);
+  }
+
+  .not_found {
+    gap: vw(32px);
+    font-size: vw(24px);
+    line-height: vw(29px);
+  }
+
+  .open_close_filters_btn {
+    margin-top: vw(20px);
+  }
 }

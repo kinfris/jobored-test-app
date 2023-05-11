@@ -1,3 +1,5 @@
+@import '@/styles/mixins.scss';
+
 .button {
   outline: none;
   border: none;
@@ -17,6 +19,27 @@
   }
 }
 
-.fullwidth{
+.fullwidth {
   width: 100%;
+}
+
+@media screen and (max-width: 1439px) {
+  .button {
+    padding: vw(8px, 1440px) vw(20px, 1440px);
+    font-size: vw(14px, 1440px);
+  }
+}
+
+@media screen and (max-width: 799px) {
+  .button {
+    padding: vw(8px, 799px) vw(20px, 799px);
+    font-size: vw(14px, 799px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .button {
+    padding: vw(8px) vw(20px);
+    font-size: vw(14px);
+  }
 }

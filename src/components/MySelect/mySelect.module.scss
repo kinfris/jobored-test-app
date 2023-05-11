@@ -1,3 +1,5 @@
+@import '@/styles/mixins.scss';
+
 .chevron_icon {
   display: flex;
   justify-content: center;
@@ -89,6 +91,72 @@
     border-radius: 8px;
     color: #FFFFFF;
     font-weight: 500;
+  }
+}
+
+@media screen and (max-width: 1439px) {
+  .chevron_icon {
+    width: vw(24px, 1440px);
+  }
+
+  .control {
+    padding: vw(11px, 1440px) vw(12px, 1440px);
+    font-size: vw(14px, 1440px);
+    line-height: vw(20px, 1440px);
+  }
+
+
+  .menu {
+    max-height: vw(188px, 1440px);
+  }
+
+  .option {
+    font-size: vw(14px, 1440px);
+    line-height: vw(20px, 1440px);
+  }
+}
+
+@media screen and (max-width: 799px) {
+  .chevron_icon {
+    width: vw(24px, 799px);
+  }
+
+  .control {
+    padding: vw(11px, 799px) vw(12px, 799px);
+    font-size: vw(14px, 799px);
+    line-height: vw(20px, 799px);
+  }
+
+
+  .menu {
+    max-height: vw(188px, 799px);
+  }
+
+  .option {
+    font-size: vw(14px, 799px);
+    line-height: vw(20px, 799px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .chevron_icon {
+    width: vw(24px);
+  }
+
+  .control {
+    padding: vw(11px) vw(12px);
+    font-size: vw(14px);
+    line-height: vw(20px);
+  }
+
+
+  .menu {
+    max-height: vw(188px);
+  }
+
+  .option {
+    font-size: vw(14px);
+    line-height: vw(20px);
   }
 }
 

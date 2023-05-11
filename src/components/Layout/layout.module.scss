@@ -1,3 +1,5 @@
+@import '@/styles/mixins.scss';
+
 .root {
   background-color: #FFFFFF;
   display: flex;
@@ -48,4 +50,113 @@
 .main{
   width: 1120px;
   padding-top: 40px;
+}
+
+
+@media screen and (max-width: 1439px) {
+  .header {
+    width: vw(1120px, 1440px);
+    padding: vw(24px, 1440px) 0;
+    gap: vw(280px, 1440px);
+  }
+
+  .logo {
+    gap: vw(12px, 1440px);
+    font-size: vw(24px, 1440px);
+  }
+
+  .links{
+    gap: vw(60px, 1440px);
+  }
+
+  .link{
+    font-size: vw(16px, 1440px);
+    line-height: vw(20px, 1440px);
+  }
+
+  .main{
+    width: vw(1120px, 1440px);
+    padding-top: vw(40px, 1440px);
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .header {
+    width: vw(920px, 1000px);
+    padding: vw(24px, 1000px) 0;
+    gap: vw(280px, 1000px);
+  }
+
+  .logo {
+    gap: vw(12px, 1000px);
+    font-size: vw(24px, 1000px);
+  }
+
+  .links{
+    gap: vw(60px, 1000px);
+  }
+
+  .link{
+    font-size: vw(16px, 1000px);
+    line-height: vw(20px, 1000px);
+  }
+
+  .main{
+    width: vw(1120px, 1000px);
+    padding-top: vw(40px, 1000px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    width: vw(720px, 768px);
+    padding: vw(24px, 768px) 0;
+    gap: vw(250px, 768px);
+  }
+
+  .logo {
+    gap: vw(12px, 768px);
+    font-size: vw(24px, 768px);
+  }
+
+  .links{
+    gap: vw(60px, 768px);
+  }
+
+  .link{
+    font-size: vw(16px, 768px);
+    line-height: vw(20px, 768px);
+  }
+
+  .main{
+    width: vw(1120px, 768px);
+    padding-top: vw(40px, 768px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    width: vw(420px);
+    padding: vw(24px) 0;
+    gap: vw(50px);
+  }
+
+  .logo {
+    gap: vw(12px);
+    font-size: vw(18px);
+  }
+
+  .links{
+    gap: vw(30px);
+  }
+
+  .link{
+    font-size: vw(14px);
+    line-height: vw(20px);
+  }
+
+  .main{
+    width: vw(1120px);
+    padding-top: vw(40px);
+  }
 }

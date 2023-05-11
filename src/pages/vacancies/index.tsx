@@ -41,6 +41,7 @@ export default function Vacancies() {
     const [vacanciesCount, setVacanciesCount] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
+    const [isFiltersOpened, setIsFiltersOpened] = useState(false);
 
     useEffect(() => {
         const asyncFunc = async () => {
@@ -147,6 +148,15 @@ export default function Vacancies() {
         }
     }
 
+    const closeFilters = () => {
+        setIsFiltersOpened(false)
+    }
+
+    const openFilters = () => {
+        setIsFiltersOpened(true)
+    }
+
+
     const VacanciesWrapper = () => {
         return (
             <>
@@ -176,7 +186,7 @@ export default function Vacancies() {
 
     return (
         <div className={styles.container}>
-            <div className={styles.filters}>
+            <div className={`${styles.filters} ${isFiltersOpened && styles.is_filters_opened}`}>
                 <div className={styles.heading_container}>
                     <p className={styles.filters_heading}>Фильтры</p>
                     <div className={styles.clear} onClick={clearAllFilters}>
@@ -194,12 +204,15 @@ export default function Vacancies() {
                     <p className={styles.filters_type}>Оклад</p>
                     <NumberInput title={'От'} name={'salaryFrom'} value={filters.salaryFrom}
                                  callback={changeStateValue}/>
-                    <NumberInput title={'До'} name={'salaryTo'} value={filters.salaryTo} callback={changeStateValue}/>
+                    <NumberInput title={'До'} name={'salaryTo'} value={filters.salaryTo}
+                                 callback={changeStateValue}/>
                 </div>
                 <CustomButton content='Применить' callback={applyFilters} fullwidth/>
+                <div className={styles.open_close_filters_btn}><CustomButton content='Закрыть фильтры' callback={closeFilters} fullwidth/></div>
             </div>
             <div className={styles.vacancies_container}>
                 <InputSearch callback={searchKeywordHandler}/>
+                <div className={styles.open_close_filters_btn}><CustomButton content='Фильтры' callback={openFilters}/></div>
                 {isLoading
                     ? <LinearProgress sx={{width: "100%"}}/>
                     : <VacanciesWrapper/>}

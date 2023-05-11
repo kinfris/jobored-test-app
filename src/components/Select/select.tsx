@@ -1,7 +1,7 @@
 import Select, {StylesConfig} from 'react-select';
 import {useEffect, useState} from "react";
 import {VacancyService} from "@/Http/vacancies";
-import {defaultOptions} from "@/components/Select/constants";
+import {defaultOptions} from "@/components/MySelect/constants";
 
 export interface SelectOption {
     readonly value: string;

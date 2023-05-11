@@ -1,3 +1,5 @@
+@import '@/styles/mixins.scss';
+
 .wrapper {
   display: flex;
   align-items: center;
@@ -67,10 +69,69 @@
   border-radius: 20px;
 }
 
-.arrow_down {
-  //transform: rotate(180deg);
-}
-
 .wrapper_active {
   border: 1px solid #5E96FC;
+}
+
+@media screen and (max-width: 1439px) {
+  .wrapper {
+    padding: vw(7px, 1440px) vw(12px, 1440px);
+  }
+
+  .input {
+    font-size: vw(14px, 1440px);
+    line-height: vw(21px, 1440px);
+  }
+
+  .input::placeholder {
+    font-size: vw(14px, 1440px);
+    line-height: vw(20px, 1440px);
+  }
+
+  .arrow {
+    width: vw(12px, 1440px);
+    height: vw(11px, 1440px);
+  }
+}
+
+@media screen and (max-width: 799px) {
+  .wrapper {
+    padding: vw(7px, 799px) vw(12px, 799px);
+  }
+
+  .input {
+    font-size: vw(14px, 799px);
+    line-height: vw(21px, 799px);
+  }
+
+  .input::placeholder {
+    font-size: vw(14px, 799px);
+    line-height: vw(20px, 799px);
+  }
+
+  .arrow {
+    width: vw(12px, 799px);
+    height: vw(11px, 799px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .wrapper {
+    padding: vw(7px) vw(12px);
+  }
+
+  .input {
+    font-size: vw(14px);
+    line-height: vw(21px);
+  }
+
+  .input::placeholder {
+    font-size: vw(14px);
+    line-height: vw(20px);
+  }
+
+  .arrow {
+    width: vw(12px);
+    height: vw(11px);
+  }
 }

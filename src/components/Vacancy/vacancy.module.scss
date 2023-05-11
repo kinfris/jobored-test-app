@@ -1,3 +1,5 @@
+@import '@/styles/mixins.scss';
+
 .vacancy_item {
   background-color: #FFFFFF;
   border: 1px solid #EAEBED;
@@ -72,3 +74,109 @@
 .star {
   color: #5E96FC;
 }
+
+@media screen and (max-width: 1439px) {
+  .vacancy_item {
+    border-radius: vw(12px, 1440px);
+    padding: vw(24px, 1440px);
+    gap: vw(12px, 1440px);
+  }
+
+  .vacancy_title {
+    font-size: vw(20px, 1440px);
+    line-height: vw(24px, 1440px);
+  }
+
+  .vacancy_description {
+    gap: vw(12px, 1440px);
+  }
+
+  .vacancy_salary {
+    font-size: vw(16px, 1440px);
+    line-height: vw(20px, 1440px);
+  }
+
+  .vacancy_workTime {
+    font-size: vw(16px, 1440px);
+    line-height: vw(20px, 1440px);
+  }
+
+  .vacancy_location {
+
+    p {
+      font-size: vw(16px, 1440px);
+      line-height: vw(19px, 1440px);
+    }
+  }
+}
+
+@media screen and (max-width: 799px) {
+  .vacancy_item {
+    border-radius: vw(12px, 799px);
+    padding: vw(24px, 799px);
+    gap: vw(12px, 799px);
+  }
+
+  .vacancy_title {
+    font-size: vw(20px, 799px);
+    line-height: vw(24px, 799px);
+  }
+
+  .vacancy_description {
+    gap: vw(12px, 799px);
+  }
+
+  .vacancy_salary {
+    font-size: vw(16px, 799px);
+    line-height: vw(20px, 799px);
+  }
+
+  .vacancy_workTime {
+    font-size: vw(16px, 799px);
+    line-height: vw(20px, 799px);
+  }
+
+  .vacancy_location {
+
+    p {
+      font-size: vw(16px, 799px);
+      line-height: vw(19px, 799px);
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .vacancy_item {
+    border-radius: vw(12px);
+    padding: vw(24px);
+    gap: vw(12px);
+  }
+
+  .vacancy_title {
+    font-size: vw(20px);
+    line-height: vw(24px);
+  }
+
+  .vacancy_description {
+    gap: vw(12px);
+  }
+
+  .vacancy_salary {
+    font-size: vw(16px);
+    line-height: vw(20px);
+  }
+
+  .vacancy_workTime {
+    font-size: vw(16px);
+    line-height: vw(20px);
+  }
+
+  .vacancy_location {
+
+    p {
+      font-size: vw(16px);
+      line-height: vw(19px);
+    }
+  }
+}
+
