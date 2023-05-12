@@ -190,17 +190,23 @@ export default function Vacancies() {
   };
 
   const onChangePage = async (value: number) => {
-    if (value !== currentPage) {
-      setCurrentPage(value);
-      const { data } = await VacancyService.getVacancies({
-        salaryFrom: filters.salaryFrom,
-        salaryTo: filters.salaryTo,
-        catalogues: filters.department.key,
-        keyword: searchingVacancy,
-        page: value,
-      });
-      setVacancies(data.objects);
-      setVacanciesCount(data.total);
+    setIsLoading(true);
+    try {
+      if (value !== currentPage) {
+        setCurrentPage(value);
+        const { data } = await VacancyService.getVacancies({
+          salaryFrom: filters.salaryFrom,
+          salaryTo: filters.salaryTo,
+          catalogues: filters.department.key,
+          keyword: searchingVacancy,
+          page: value,
+        });
+        setVacancies(data.objects);
+        setVacanciesCount(data.total);
+      }
+    } catch (e) {
+    } finally {
+      setIsLoading(false);
     }
   };
 
