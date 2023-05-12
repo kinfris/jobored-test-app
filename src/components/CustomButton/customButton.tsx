@@ -1,15 +1,13 @@
-import styles from './customButton.module.scss'
+import styles from './customButton.module.scss';
+import { Props } from './types';
 
-type Props = {
-    content: string;
-    callback: () => void;
-    fullwidth?: boolean;
-}
-
-export function CustomButton({content, callback, fullwidth = false}: Props) {
-    return (
-        <button className={`${styles.button} ${fullwidth && styles.fullwidth}`} onClick={callback}>
-            {content}
-        </button>
-    )
+export function CustomButton({ content, callback, fullwidth = false }: Props) {
+  return (
+    <button
+      className={`${styles.button} ${fullwidth && styles.fullwidth}`}
+      onClick={callback}
+    >
+      {content}
+    </button>
+  );
 }

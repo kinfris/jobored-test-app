@@ -24,30 +24,30 @@
   color: #232134;
 }
 
-.links{
+.links {
   display: flex;
   align-items: center;
   gap: 60px;
 }
 
-.link{
+.link {
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
   color: #232134;
 }
 
-.active_link{
+.active_link {
   color: #5E96FC;
   font-weight: 500;
 }
 
-.main_container{
+.main_container {
   display: flex;
   justify-content: center;
 }
 
-.main{
+.main {
   width: 1120px;
   padding-top: 40px;
   padding-bottom: 40px;
@@ -66,16 +66,16 @@
     font-size: vw(24px, 1440px);
   }
 
-  .links{
+  .links {
     gap: vw(60px, 1440px);
   }
 
-  .link{
+  .link {
     font-size: vw(16px, 1440px);
     line-height: vw(20px, 1440px);
   }
 
-  .main{
+  .main {
     width: vw(1120px, 1440px);
     padding-top: vw(40px, 1440px);
     padding-bottom: vw(40px, 1440px);
@@ -94,16 +94,16 @@
     font-size: vw(24px, 1000px);
   }
 
-  .links{
+  .links {
     gap: vw(60px, 1000px);
   }
 
-  .link{
+  .link {
     font-size: vw(16px, 1000px);
     line-height: vw(20px, 1000px);
   }
 
-  .main{
+  .main {
     width: vw(1120px, 1000px);
     padding-top: vw(40px, 1000px);
     padding-bottom: vw(40px, 1000px);
@@ -122,16 +122,16 @@
     font-size: vw(24px, 768px);
   }
 
-  .links{
+  .links {
     gap: vw(60px, 768px);
   }
 
-  .link{
+  .link {
     font-size: vw(16px, 768px);
     line-height: vw(20px, 768px);
   }
 
-  .main{
+  .main {
     width: vw(1120px, 768px);
     padding-top: vw(40px, 768px);
     padding-bottom: vw(40px, 768px);
@@ -150,16 +150,16 @@
     font-size: vw(18px);
   }
 
-  .links{
+  .links {
     gap: vw(30px);
   }
 
-  .link{
+  .link {
     font-size: vw(14px);
     line-height: vw(20px);
   }
 
-  .main{
+  .main {
     width: vw(1120px);
     padding-top: vw(40px);
     padding-bottom: vw(40px);

@@ -1,19 +1,19 @@
 .pagination {
-  ul{
+  ul {
     gap: 8px;
   }
 
-  li{
+  li {
     background-color: #FFFFFF;
     border: 1px solid #EAEBED;
     border-radius: 4px;
     height: 32px;
 
-    button{
+    button {
       margin: 0;
     }
 
-    button > Mui-selected{
+    button > Mui-selected {
       background-color: #5E96FC;
       color: #FFFFFF;
     }
