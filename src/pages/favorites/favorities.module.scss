@@ -1,4 +1,5 @@
 @import '@/styles/mixins.scss';
+@import "@/styles/global-variables.scss";
 
 
 .container {
@@ -25,23 +26,23 @@
   outline: none;
   border: none;
   border-radius: 8px;
-  background-color: #DEECFF;
+  background-color: $blue1;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
   line-height: 22px;
-  color: #3B7CD3;
+  color: $blue6;
   padding: 10px 24px;
   cursor: pointer;
 
   &:hover {
-    color: #FFFFFF;
-    background-color: #92C1FF;
+    color: $white;
+    background-color: $blue4;
   }
 
   &:active {
-    color: #FFFFFF;
+    color: $white;
     background-color: #5E96FC;
   }
 }

@@ -1,8 +1,9 @@
 @import '@/styles/mixins.scss';
+@import "@/styles/global-variables.scss";
 
 .vacancy_item {
-  background-color: #FFFFFF;
-  border: 1px solid #EAEBED;
+  background-color: $white;
+  border: 1px solid $grey2;
   border-radius: 12px;
   padding: 24px;
   display: flex;
@@ -43,7 +44,7 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background-color: #7B7C88;
+  background-color: $grey6;
 }
 
 .vacancy_workTime {
@@ -64,7 +65,7 @@
 }
 
 .empty_star {
-  color: #ACADB9;
+  color: $grey5;
 
   &:hover {
     color: #5E96FC;

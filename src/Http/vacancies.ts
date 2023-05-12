@@ -1,11 +1,13 @@
 import { $api } from '@/Http/instance';
 import { QueryType } from '@/Http/types';
+import { itemsPerPage } from '@/components/PagitationContainer/constants';
+import { defaultCategory } from '@/Http/constants';
 
 const defaultQuery = {
   salaryFrom: '',
   salaryTo: '',
   keyword: '',
-  catalogues: 33,
+  catalogues: defaultCategory,
   page: 1,
 };
 
@@ -32,14 +34,14 @@ export const VacancyService = {
     if (query.catalogues) {
       queryString.push(`catalogues=${query.catalogues}`);
     } else {
-      queryString.push('catalogues=33');
+      queryString.push(`catalogues=${defaultCategory}`);
     }
     if (query.page) {
       queryString.push(`page=${query.page}`);
     }
 
     const response = await $api(
-      `/vacancies/?${queryString.join('&')}&count=4&published=1`,
+      `/vacancies/?${queryString.join('&')}&count=${itemsPerPage}&published=1`,
       {
         headers: {
           'x-secret-key': 'GEU4nvd3rej*jeh.eqp',
@@ -54,7 +56,7 @@ export const VacancyService = {
     return response;
   },
   async getAllVacancies() {
-    const response = await $api('/vacancies/?catalogues=33', {
+    const response = await $api(`/vacancies/?catalogues=${defaultCategory}`, {
       headers: {
         'x-secret-key': 'GEU4nvd3rej*jeh.eqp',
         access_token:
@@ -81,7 +83,7 @@ export const VacancyService = {
   },
 
   async getCatalogues() {
-    const response = await $api('/catalogues/parent/33', {
+    const response = await $api(`/catalogues/parent/${defaultCategory}`, {
       maxRedirects: 2,
     });
     return response;

@@ -1,4 +1,5 @@
 @import '@/styles/mixins.scss';
+@import "@/styles/global-variables.scss";
 
 .chevron_icon {
   display: flex;
@@ -12,7 +13,7 @@
   transform: rotate(180deg);
 
   svg {
-    color: #5E96FC;
+    color: $blue5;
   }
 }
 
@@ -21,26 +22,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #FFFFFF;
+  background-color: $white;
   padding: 11px 12px;
   border-radius: 8px;
-  border: 1px solid #D5D6DC;
+  border: 1px solid $grey3;
   font-family: Inter;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
 
   &:hover {
-    border: 1px solid #5E96FC;
+    border: 1px solid $blue5;
   }
 }
 
 .opened {
-  border: 1px solid #5E96FC;
+  border: 1px solid $blue5;
 }
 
 .hidden {
-  color: #ACADB9;
+  color: $grey5;
 }
 
 .menu {
@@ -54,23 +55,23 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #FFFFFF
+    background: $white;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #ACADB9;
+    background: $grey5;
     border-radius: 20px;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: #ACADB9;
+    background: $grey5;
   }
 }
 
 .active_option {
-  background-color: #5E96FC;
+  background-color: $blue5;
   border-radius: 8px;
-  color: #FFFFFF;
+  color: $white;
   font-weight: 500;
 }
 
@@ -82,14 +83,14 @@
   border-radius: 8px;
 
   &:hover {
-    background-color: #DEECFF;
+    background-color: $blue1;
     border-radius: 8px;
   }
 
   &:active {
-    background-color: #5E96FC;
+    background-color: $blue5;
     border-radius: 8px;
-    color: #FFFFFF;
+    color: $white;
     font-weight: 500;
   }
 }

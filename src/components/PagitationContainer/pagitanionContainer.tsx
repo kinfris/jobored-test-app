@@ -2,6 +2,7 @@ import Pagination from '@mui/material/Pagination';
 import styles from './paginationContainer.module.scss';
 import * as React from 'react';
 import { PropsType } from './types';
+import { itemsPerPage } from './constants';
 
 export function PaginationContainer({ page, count, callback }: PropsType) {
   const onChangePageHandler = (
@@ -16,7 +17,7 @@ export function PaginationContainer({ page, count, callback }: PropsType) {
       <Pagination
         page={page}
         onChange={onChangePageHandler}
-        count={Math.ceil(count / 4)}
+        count={Math.ceil(count / itemsPerPage)}
         shape="rounded"
         className={styles.pagination}
         sx={{

@@ -1,21 +1,22 @@
 @import '@/styles/mixins.scss';
+@import "@/styles/global-variables.scss";
 
 .button {
   outline: none;
   border: none;
-  background-color: #5E96FC;
-  color: #FFFFFF;
+  background-color: $blue5;
+  color: $white;
   border-radius: 8px;
   padding: 8px 20px;
   cursor: pointer;
   font-size: 14px;
 
   &:hover {
-    background-color: #92C1FF;
+    background-color: $blue4;
   }
 
   &:active {
-    background-color: #3B7CD3;
+    background-color: $blue6;
   }
 }
 

@@ -1,17 +1,18 @@
 @import '@/styles/mixins.scss';
+@import "@/styles/global-variables.scss";
 
 .wrapper {
   display: flex;
   align-items: center;
-  background-color: #FFFFFF;
-  border: 1px solid #D5D6DC;
+  background-color: $white;
+  border: 1px solid $grey3;
   padding: 7px 12px;
   border-radius: 8px;
   justify-content: space-between;
 }
 
 .wrapper:hover {
-  border: 1px solid #5E96FC;
+  border: 1px solid $blue5;
 }
 
 .input_container {
@@ -29,13 +30,13 @@
   caret-color: #5E96FC;
   font-size: 14px;
   line-height: 21px;
-  color: #232134;
+  color: $black;
 }
 
 .input::placeholder {
   font-size: 14px;
   line-height: 20px;
-  color: #ACADB9;
+  color: $grey5;
 }
 
 .buttons_wrapper {
@@ -50,13 +51,13 @@
   cursor: pointer;
   width: 12px;
   height: 12px;
-  color: #ACADB9;
+  color: $grey5;
   display: flex;
   justify-content: center;
   align-items: center;
 
   &:hover {
-    color: #92C1FF;
+    color: $blue4;
   }
 
   &:active {

@@ -16,8 +16,8 @@ export function NumberInput({ title, name, value, callback }: PropsType) {
   };
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    const re = /\D/;
-    if (!re.test(value)) {
+    const regexOnlyNumbers = /\D/;
+    if (!regexOnlyNumbers.test(value)) {
       callback(name, +value);
     }
   };

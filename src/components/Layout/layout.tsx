@@ -19,20 +19,6 @@ const links = [
 export function Layout({ children }: Props) {
   const router = useRouter();
 
-  const items = links.map((link) => {
-    const routeName = router.pathname.split('/')[1];
-    return (
-      <Link
-        href={`/${link.link}`}
-        key={link.label}
-        className={`${styles.link} ${
-          routeName === link.link && styles.active_link
-        }`}
-      >
-        {link.label}
-      </Link>
-    );
-  });
   return (
     <>
       <div className={styles.root}>
@@ -42,7 +28,22 @@ export function Layout({ children }: Props) {
             Jobored
           </div>
 
-          <div className={styles.links}>{items}</div>
+          <div className={styles.links}>
+            {links.map((link) => {
+              const routeName = router.pathname.split('/')[1];
+              return (
+                <Link
+                  href={`/${link.link}`}
+                  key={link.label}
+                  className={`${styles.link} ${
+                    routeName === link.link && styles.active_link
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </div>
       <div className={styles.main_container}>

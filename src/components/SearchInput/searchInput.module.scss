@@ -1,17 +1,18 @@
 @import '@/styles/mixins.scss';
+@import "@/styles/global-variables.scss";
 
 .wrapper {
   display: flex;
   align-items: center;
-  background-color: #FFFFFF;
-  border: 1px solid #D5D6DC;
+  background-color: $white;
+  border: 1px solid $grey3;
   padding: 7px 12px;
   border-radius: 8px;
   justify-content: space-between;
 }
 
 .wrapper:hover {
-  border: 1px solid #5E96FC;
+  border: 1px solid $blue5;
 }
 
 .input_container {
@@ -26,23 +27,23 @@
   border: none;
   outline: none;
   width: 100%;
-  caret-color: #5E96FC;
+  caret-color: $blue5;
   font-size: 14px;
   line-height: 21px;
-  color: #232134;
+  color: $black;
 }
 
 .input::placeholder {
   font-size: 14px;
   line-height: 20px;
-  color: #ACADB9;
+  color: $grey5;
 }
 
 .button {
   outline: none;
   border: none;
-  background-color: #5E96FC;
-  color: #FFFFFF;
+  background-color: $blue5;
+  color: $white;
   border-radius: 8px;
   padding: 8px 20px;
   cursor: pointer;
@@ -50,7 +51,7 @@
 }
 
 .wrapper_active {
-  border: 1px solid #5E96FC;
+  border: 1px solid $blue5;
 }
 
 @media screen and (max-width: 1439px) {

@@ -1,7 +1,8 @@
 @import '@/styles/mixins.scss';
+@import "@/styles/global-variables.scss";
 
 .root {
-  background-color: #FFFFFF;
+  background-color: $white;
   display: flex;
   justify-content: center;
 }
@@ -21,7 +22,7 @@
   font-size: 24px;
   font-family: 'Poppins';
   font-weight: 600;
-  color: #232134;
+  color: $black;
 }
 
 .links {
@@ -34,11 +35,11 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
-  color: #232134;
+  color: $black;
 }
 
 .active_link {
-  color: #5E96FC;
+  color: $blue5;
   font-weight: 500;
 }
 

@@ -1,11 +1,13 @@
+@import "@/styles/global-variables.scss";
+
 .pagination {
   ul {
     gap: 8px;
   }
 
   li {
-    background-color: #FFFFFF;
-    border: 1px solid #EAEBED;
+    background-color: $white;
+    border: 1px solid $grey2;
     border-radius: 4px;
     height: 32px;
 
@@ -13,19 +15,19 @@
       margin: 0;
     }
 
-    button > Mui-selected {
+    button > .Mui-selected {
       background-color: #5E96FC;
-      color: #FFFFFF;
+      color: $white;
     }
   }
 
   li:first-child, li:last-child {
     button {
-      color: #7B7C88;
+      color: $grey6;
     }
 
     button:disabled {
-      color: #D5D6DC;
+      color: $grey3;
     }
   }
 }

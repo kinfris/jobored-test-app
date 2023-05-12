@@ -15,6 +15,7 @@ import { useRouter } from 'next/router';
 import { defaultOptions } from '@/components/MySelect/constants';
 import { CatalogsType } from '@/components/MySelect/types';
 import { FiltersType, VacancyType } from '@/pages/types';
+import { itemsPerPage } from '@/components/PagitationContainer/constants';
 
 const defaultFilters: FiltersType = {
   department: { label: 'Выберите отрасль', isHidden: true },
@@ -242,7 +243,7 @@ export default function Vacancies() {
                 </div>
               );
             })}
-            {vacanciesCount > 4 && (
+            {vacanciesCount > itemsPerPage && (
               <div className={styles.pagination}>
                 <PaginationContainer
                   page={currentPage}

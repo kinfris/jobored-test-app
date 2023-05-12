@@ -5,7 +5,7 @@ import { LinearProgress } from '@mui/material';
 import { useRouter } from 'next/router';
 import { FilledStartIcon } from '@/components/icons/filledStarIcon';
 import { EmptyStartIcon } from '@/components/icons/epmptyStarIcon';
-import { LocationIcon } from '@/components/icons/LocationIcon';
+import { LocationIcon } from '@/components/icons/locationIcon';
 import { VacancyWithDescriptionType } from '@/pages/types';
 
 export default function Vacancy() {

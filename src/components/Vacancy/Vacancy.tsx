@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { EmptyStartIcon } from '@/components/icons/epmptyStarIcon';
 import { FilledStartIcon } from '@/components/icons/filledStarIcon';
-import { LocationIcon } from '@/components/icons/LocationIcon';
+import { LocationIcon } from '@/components/icons/locationIcon';
 import { PropsType } from './types';
 
 export function Vacancy({ vacancy, callback }: PropsType) {

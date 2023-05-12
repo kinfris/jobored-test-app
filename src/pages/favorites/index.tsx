@@ -8,6 +8,7 @@ import { VacancyService } from '@/Http/vacancies';
 import Link from 'next/link';
 import { LinearProgress } from '@mui/material';
 import { VacancyType } from '../types';
+import { itemsPerPage } from '@/components/PagitationContainer/constants';
 
 export default function Favorites() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,8 +28,8 @@ export default function Favorites() {
         setIsLoading(true);
         try {
           const vacanciesOnPage = JSON.parse(favoritesVacancies).slice(
-            (currentPage - 1) * 4,
-            currentPage * 4
+            (currentPage - 1) * itemsPerPage,
+            currentPage * itemsPerPage
           );
           const vacanciesArray = await Promise.all(
             vacanciesOnPage.map(async (vacancyId: number) => {
@@ -97,7 +98,7 @@ export default function Favorites() {
           />
         );
       })}
-      {totalCount > 4 && (
+      {totalCount > itemsPerPage && (
         <div className={styles.pagination}>
           <PaginationContainer
             page={currentPage}
