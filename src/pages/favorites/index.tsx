@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 import { VacancyService } from '@/Http/vacancies';
 import Link from 'next/link';
 import { LinearProgress } from '@mui/material';
-import { VacancyType } from '@/pages/types';
+import { VacancyType } from '../types';
 
 export default function Favorites() {
   const [currentPage, setCurrentPage] = useState(1);
