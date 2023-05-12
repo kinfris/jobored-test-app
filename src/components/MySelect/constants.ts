@@ -1,10 +1,12 @@
-export const defaultOptions: Array<{
+export type CatalogsType ={
     title_rus: string;
     url_rus: string;
     title: string;
     id_parent: number;
     key: number;
-}> = [
+}
+
+export const defaultOptions: Array<CatalogsType> = [
     {
         "title_rus": "CRM-системы",
         "url_rus": "crm-sistemy",

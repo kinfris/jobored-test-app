@@ -50,6 +50,7 @@
 .main{
   width: 1120px;
   padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 
@@ -77,6 +78,7 @@
   .main{
     width: vw(1120px, 1440px);
     padding-top: vw(40px, 1440px);
+    padding-bottom: vw(40px, 1440px);
   }
 }
 
@@ -104,6 +106,7 @@
   .main{
     width: vw(1120px, 1000px);
     padding-top: vw(40px, 1000px);
+    padding-bottom: vw(40px, 1000px);
   }
 }
 
@@ -131,6 +134,7 @@
   .main{
     width: vw(1120px, 768px);
     padding-top: vw(40px, 768px);
+    padding-bottom: vw(40px, 768px);
   }
 }
 
@@ -158,5 +162,6 @@
   .main{
     width: vw(1120px);
     padding-top: vw(40px);
+    padding-bottom: vw(40px);
   }
 }

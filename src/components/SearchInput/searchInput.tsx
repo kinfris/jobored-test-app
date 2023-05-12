@@ -4,12 +4,13 @@ import {CustomButton} from "@/components/CustomButton/customButton";
 import {SearchIcon} from "@/components/icons/searchIcon";
 
 type PropsType = {
-    callback: (value: string) => void;
+    value: string;
+    onChange: (value: string) => void;
+    callback: () => void;
 
 }
 
-export function InputSearch({callback}: PropsType) {
-    const [state, setState] = useState('');
+export function InputSearch({value, onChange, callback}: PropsType) {
     const [isActive, setIsActive] = useState(false);
     const onInputFocus = () => {
         setIsActive(true)
@@ -20,11 +21,11 @@ export function InputSearch({callback}: PropsType) {
     }
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setState(e.target.value)
+        onChange(e.target.value)
     }
 
     const onSearchHandle = () => {
-        callback(state)
+        callback()
     }
 
     return (
@@ -32,7 +33,7 @@ export function InputSearch({callback}: PropsType) {
             <div className={styles.input_container}>
                 <SearchIcon/>
                 <input className={styles.input} placeholder='Введите название вакансии' onClick={onInputFocus}
-                       onBlur={onInputBlur} value={state} onChange={onChangeHandler} data-elem="search-input"/>
+                       onBlur={onInputBlur} value={value} onChange={onChangeHandler} data-elem="search-input"/>
             </div>
             <CustomButton content='Поиск' callback={onSearchHandle} data-elem="search-button"/>
         </div>

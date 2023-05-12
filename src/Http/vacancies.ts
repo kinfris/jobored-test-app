@@ -35,6 +35,8 @@ export const VacancyService = {
         }
         if (query.catalogues) {
             queryString.push(`catalogues=${query.catalogues}`)
+        } else {
+            queryString.push('catalogues=33')
         }
         if (query.page) {
             queryString.push(`page=${query.page}`)

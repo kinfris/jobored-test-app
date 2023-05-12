@@ -11,6 +11,8 @@ import {LinearProgress} from "@mui/material";
 import not_found from "../../../public/not_found.png";
 import {CrossIcon} from "@/components/icons/crossIcon";
 import {MySelect} from "@/components/MySelect/mySelect";
+import {useRouter} from 'next/router';
+import {CatalogsType, defaultOptions} from "@/components/MySelect/constants";
 
 
 type VacancyType = {
@@ -22,8 +24,10 @@ type VacancyType = {
     location: string;
 }
 
+type CatalogType = { label: string; isHidden?: boolean; key?: number; }
+
 type FiltersType = {
-    department: { label: string, isHidden?: boolean, key?: number };
+    department: CatalogType;
     salaryFrom: string | number;
     salaryTo: string | number;
 }
@@ -42,10 +46,40 @@ export default function Vacancies() {
     const [currentPage, setCurrentPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
     const [isFiltersOpened, setIsFiltersOpened] = useState(false);
+    const router = useRouter();
+
+    useEffect(() => {
+        const {query} = router;
+        const updatedFilters = {...filters};
+
+        if (query.salaryFrom) {
+            updatedFilters.salaryFrom = +query.salaryFrom;
+        }
+        if (query.salaryTo) {
+            updatedFilters.salaryTo = +query.salaryTo;
+        }
+        if (query.catalogues) {
+            // @ts-ignore
+            let catalog: CatalogsType | undefined = defaultOptions.find(catalog => catalog.key === +query.catalogues);
+            if (!catalog) {
+                updatedFilters.department = defaultFilters.department;
+            } else {
+                updatedFilters.department = {
+                    label: catalog.title_rus,
+                    key: catalog.key
+                }
+            }
+        }
+        if (query.keyword) {
+            // @ts-ignore
+            setSearchingVacancy(query.keyword)
+        }
+        setFilters(updatedFilters)
+    }, [router.query])
 
     useEffect(() => {
         const asyncFunc = async () => {
-            setIsLoading(true)
+            setIsLoading(true);
             try {
                 const response = await VacancyService.getVacancies();
                 const data = response.data.objects.map((vacancyDescription: any) => {
@@ -69,6 +103,9 @@ export default function Vacancies() {
         asyncFunc()
     }, [])
 
+    const onSetSearchingVacancyHandler = (value: string) => {
+        setSearchingVacancy(value)
+    }
     const applyFilters = async () => {
         setIsLoading(true)
         try {
@@ -81,6 +118,23 @@ export default function Vacancies() {
             setVacancies(data.objects);
             setVacanciesCount(data.total);
             setCurrentPage(1);
+            const query: any = {}
+            if (filters.salaryFrom) {
+                query.salaryFrom = filters.salaryFrom
+            }
+            if (filters.salaryTo) {
+                query.salaryTo = filters.salaryTo
+            }
+            if (filters.department.key) {
+                query.catalogues = filters.department.key;
+            }
+            if (searchingVacancy) {
+                query.keyword = searchingVacancy
+            }
+            router.push({
+                pathname: '/vacancies',
+                query: query,
+            });
         } catch (e) {
 
         } finally {
@@ -106,6 +160,10 @@ export default function Vacancies() {
             setCurrentPage(1);
             setFilters(defaultFilters);
             setSearchingVacancy('');
+            router.push({
+                pathname: '/vacancies',
+                query: {},
+            });
         } catch (e) {
 
         } finally {
@@ -113,19 +171,37 @@ export default function Vacancies() {
         }
     }
 
-    const searchKeywordHandler = async (value: string) => {
+    const searchKeywordHandler = async () => {
         setIsLoading(true);
         try {
-            setSearchingVacancy(value);
             const {data} = await VacancyService.getVacancies({
                 salaryFrom: filters.salaryFrom,
                 salaryTo: filters.salaryTo,
                 catalogues: filters.department.key,
-                keyword: value
+                keyword: searchingVacancy
             });
             setVacancies(data.objects);
             setVacanciesCount(data.total);
             setCurrentPage(1);
+            const query: any = {}
+            if (filters.salaryFrom) {
+                query.salaryFrom = filters.salaryFrom
+            }
+            if (filters.salaryTo) {
+                query.salaryTo = filters.salaryTo
+            }
+            if (filters.department.key) {
+                query.catalogues = filters.department.key
+            }
+            if (searchingVacancy) {
+                query.keyword = searchingVacancy
+            } else if (query.keyword) {
+                delete query.keyword
+            }
+            router.push({
+                pathname: '/vacancies',
+                query: query,
+            });
         } catch (e) {
 
         } finally {
@@ -208,11 +284,13 @@ export default function Vacancies() {
                                  callback={changeStateValue}/>
                 </div>
                 <CustomButton content='Применить' callback={applyFilters} fullwidth/>
-                <div className={styles.open_close_filters_btn}><CustomButton content='Закрыть фильтры' callback={closeFilters} fullwidth/></div>
+                <div className={styles.open_close_filters_btn}><CustomButton content='Закрыть фильтры'
+                                                                             callback={closeFilters} fullwidth/></div>
             </div>
             <div className={styles.vacancies_container}>
-                <InputSearch callback={searchKeywordHandler}/>
-                <div className={styles.open_close_filters_btn}><CustomButton content='Фильтры' callback={openFilters}/></div>
+                <InputSearch callback={searchKeywordHandler} value={searchingVacancy} onChange={onSetSearchingVacancyHandler} />
+                <div className={styles.open_close_filters_btn}><CustomButton content='Фильтры' callback={openFilters}/>
+                </div>
                 {isLoading
                     ? <LinearProgress sx={{width: "100%"}}/>
                     : <VacanciesWrapper/>}
