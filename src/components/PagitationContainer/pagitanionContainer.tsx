@@ -4,7 +4,7 @@ import * as React from 'react';
 import { PropsType } from './types';
 import { itemsPerPage } from './constants';
 
-export function PaginationContainer({ page, count, callback }: PropsType) {
+export const PaginationContainer = ({ page, count, callback }: PropsType) => {
   const onChangePageHandler = (
     event: React.ChangeEvent<unknown>,
     page: number
@@ -33,4 +33,4 @@ export function PaginationContainer({ page, count, callback }: PropsType) {
       />
     </>
   );
-}
+};

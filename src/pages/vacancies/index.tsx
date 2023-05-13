@@ -44,10 +44,12 @@ export default function Vacancies() {
       updatedFilters.salaryTo = +query.salaryTo;
     }
     if (query.catalogues) {
-      let catalog: CatalogsType | undefined = defaultOptions.find((catalog) => {
-        // @ts-ignore
-        return catalog.key === +query.catalogues;
-      });
+      const catalog: CatalogsType | undefined = defaultOptions.find(
+        (catalog) => {
+          // @ts-ignore
+          return catalog.key === +query.catalogues;
+        }
+      );
       if (!catalog) {
         updatedFilters.department = defaultFilters.department;
       } else {

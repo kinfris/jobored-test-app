@@ -21,5 +21,24 @@
     "prettier"
   ],
   "rules": {
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/consistent-type-imports": "off",
+    "react/react-in-jsx-scope": "off",
+    "no-template-curly-in-string": "off",
+    "@typescript-eslint/restrict-template-expressions": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/array-type": "off",
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/return-await": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/consistent-type-definitions": "off",
+    "@typescript-eslint/no-confusing-void-expression": "off",
+    "@typescript-eslint/prefer-ts-expect-error": "off",
+    "@typescript-eslint/no-misused-promises": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }

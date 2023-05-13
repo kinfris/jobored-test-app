@@ -1,7 +1,7 @@
 import '@/styles/globals.scss';
 import '@/styles/general.scss';
 import '@/styles/fonts.scss';
-import type { AppProps } from 'next/app';
+import { AppProps } from 'next/app';
 import { Layout } from '@/components/Layout/layout';
 import { useEffect } from 'react';
 import { VacancyService } from '@/Http/vacancies';

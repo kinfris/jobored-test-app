@@ -3,13 +3,13 @@ import { useEffect, useState } from 'react';
 import { VacancyService } from '@/Http/vacancies';
 import { defaultOptions } from '@/components/MySelect/constants';
 
-export type SelectOption = {
+export interface SelectOption {
   readonly value: string;
   readonly label: string;
   readonly isFixed?: boolean;
   readonly isDisabled?: boolean;
   readonly isHidden?: boolean;
-};
+}
 
 const selectStyles: StylesConfig<SelectOption, true> = {
   // @ts-ignore
@@ -116,7 +116,7 @@ const defaultMappedCatalogues = defaultOptions.map(
   })
 );
 
-export function CustomSelect({ name, value, callback }: PropsType) {
+export const CustomSelect = ({ name, value, callback }: PropsType) => {
   const [options, setOptions] = useState<
     Array<{ value: string; label: string; key: number }>
   >(defaultMappedCatalogues);
@@ -165,4 +165,4 @@ export function CustomSelect({ name, value, callback }: PropsType) {
       />
     </div>
   );
-}
+};

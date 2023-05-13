@@ -4,7 +4,7 @@ import { ButtonUpIcon } from '@/components/icons/buttonUpIcon';
 import { ButtonDownIcon } from '@/components/icons/buttonDownIcon';
 import { PropsType } from './types';
 
-export function NumberInput({ title, name, value, callback }: PropsType) {
+export const NumberInput = ({ title, name, value, callback }: PropsType) => {
   const [isActive, setIsActive] = useState(false);
 
   const onInputFocus = () => {
@@ -52,4 +52,4 @@ export function NumberInput({ title, name, value, callback }: PropsType) {
       </div>
     </div>
   );
-}
+};

@@ -16,7 +16,7 @@ const links = [
   },
 ];
 
-export function Layout({ children }: Props) {
+export const Layout = ({ children }: Props) => {
   const router = useRouter();
 
   return (
@@ -51,4 +51,4 @@ export function Layout({ children }: Props) {
       </div>
     </>
   );
-}
+};

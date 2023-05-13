@@ -4,7 +4,7 @@ import { CustomButton } from '@/components/CustomButton/customButton';
 import { SearchIcon } from '@/components/icons/searchIcon';
 import { PropsType } from './types';
 
-export function InputSearch({ value, onChange, callback }: PropsType) {
+export const InputSearch = ({ value, onChange, callback }: PropsType) => {
   const [isActive, setIsActive] = useState(false);
   const onInputFocus = () => {
     setIsActive(true);
@@ -43,4 +43,4 @@ export function InputSearch({ value, onChange, callback }: PropsType) {
       />
     </div>
   );
-}
+};

@@ -18,7 +18,7 @@ export default function Vacancy() {
 
   useEffect(() => {
     setIsLoading(true);
-    let id = router.query.id ? +router.query.id : null;
+    const id = router.query.id ? +router.query.id : null;
     if (!id) {
       setIsLoading(false);
     } else {

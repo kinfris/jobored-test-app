@@ -6,7 +6,7 @@ import { FilledStartIcon } from '@/components/icons/filledStarIcon';
 import { LocationIcon } from '@/components/icons/locationIcon';
 import { PropsType } from './types';
 
-export function Vacancy({ vacancy, callback }: PropsType) {
+export const Vacancy = ({ vacancy, callback }: PropsType) => {
   const [isFavorite, setIsFavorite] = useState(false);
   useEffect(() => {
     const favoritesVacancies = localStorage.getItem('favoritesVacancies');
@@ -92,4 +92,4 @@ export function Vacancy({ vacancy, callback }: PropsType) {
       </div>
     </div>
   );
-}
+};
