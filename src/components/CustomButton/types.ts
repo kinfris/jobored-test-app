@@ -1,5 +1,5 @@
-export type Props = {
+export interface Props {
   content: string;
   callback: () => void;
   fullwidth?: boolean;
-};
+}
