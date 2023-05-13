@@ -3,13 +3,13 @@ import { useEffect, useState } from 'react';
 import { VacancyService } from '@/Http/vacancies';
 import { defaultOptions } from '@/components/MySelect/constants';
 
-export interface SelectOption {
+export type SelectOption = {
   readonly value: string;
   readonly label: string;
   readonly isFixed?: boolean;
   readonly isDisabled?: boolean;
   readonly isHidden?: boolean;
-}
+};
 
 const selectStyles: StylesConfig<SelectOption, true> = {
   // @ts-ignore

@@ -1,4 +1,4 @@
-export interface PropsType {
+export type PropsType = {
   vacancy: {
     id: number;
     profession: string;
@@ -8,4 +8,4 @@ export interface PropsType {
     location: string;
   };
   callback?: () => void;
-}
+};
