@@ -219,45 +219,6 @@ export default function Vacancies() {
     setIsFiltersOpened(true);
   };
 
-  const VacanciesWrapper = () => {
-    return (
-      <>
-        {!vacancies || vacancies.length === 0 ? (
-          <div className={styles.not_found}>
-            <Image alt={'not found'} src={not_found} />
-            <p className={styles.not_found_text}>
-              Упс, вакансий с такими параметрами не найдено!
-            </p>
-          </div>
-        ) : (
-          <div className={styles.vacancies_wrapper}>
-            {vacancies.map((vacancy) => {
-              return (
-                <div key={vacancy.id}>
-                  {vacancy && (
-                    <Vacancy
-                      vacancy={vacancy}
-                      data-elem={`vacancy-${vacancy.id}`}
-                    />
-                  )}
-                </div>
-              );
-            })}
-            {vacanciesCount > itemsPerPage && (
-              <div className={styles.pagination}>
-                <PaginationContainer
-                  page={currentPage}
-                  count={vacanciesCount}
-                  callback={onChangePage}
-                />
-              </div>
-            )}
-          </div>
-        )}
-      </>
-    );
-  };
-
   return (
     <div className={styles.container}>
       <div
@@ -318,7 +279,40 @@ export default function Vacancies() {
         {isLoading ? (
           <LinearProgress sx={{ width: '100%' }} />
         ) : (
-          <VacanciesWrapper />
+          <>
+            {!vacancies || vacancies.length === 0 ? (
+              <div className={styles.not_found}>
+                <Image alt={'not found'} src={not_found} />
+                <p className={styles.not_found_text}>
+                  Упс, вакансий с такими параметрами не найдено!
+                </p>
+              </div>
+            ) : (
+              <div className={styles.vacancies_wrapper}>
+                {vacancies.map((vacancy) => {
+                  return (
+                    <div key={vacancy.id}>
+                      {vacancy && (
+                        <Vacancy
+                          vacancy={vacancy}
+                          data-elem={`vacancy-${vacancy.id}`}
+                        />
+                      )}
+                    </div>
+                  );
+                })}
+                {vacanciesCount > itemsPerPage && (
+                  <div className={styles.pagination}>
+                    <PaginationContainer
+                      page={currentPage}
+                      count={vacanciesCount}
+                      callback={onChangePage}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>
