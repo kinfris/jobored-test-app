@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 import { VacancyService } from '@/Http/vacancies';
 import Link from 'next/link';
 import { LinearProgress } from '@mui/material';
-import { VacancyType } from '../types';
+import { VacancyType } from '../../types/mainTypes';
 import { itemsPerPage } from '@/components/PagitationContainer/constants';
 
 export default function Favorites() {

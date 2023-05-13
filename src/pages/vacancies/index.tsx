@@ -14,7 +14,7 @@ import { MySelect } from '@/components/MySelect/mySelect';
 import { useRouter } from 'next/router';
 import { defaultOptions } from '@/components/MySelect/constants';
 import { CatalogsType } from '@/components/MySelect/types';
-import { FiltersType, VacancyType } from '@/pages/types';
+import { FiltersType, VacancyType } from '@/types/mainTypes';
 import { itemsPerPage } from '@/components/PagitationContainer/constants';
 
 const defaultFilters: FiltersType = {

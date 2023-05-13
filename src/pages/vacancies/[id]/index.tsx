@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { FilledStartIcon } from '@/components/icons/filledStarIcon';
 import { EmptyStartIcon } from '@/components/icons/epmptyStarIcon';
 import { LocationIcon } from '@/components/icons/locationIcon';
-import { VacancyWithDescriptionType } from '@/pages/types';
+import { VacancyWithDescriptionType } from '@/types/mainTypes';
 
 export default function Vacancy() {
   const [vacancy, setVacancy] = useState<VacancyWithDescriptionType | null>(
