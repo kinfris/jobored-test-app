@@ -14,7 +14,11 @@ import { MySelect } from '@/components/MySelect/mySelect';
 import { useRouter } from 'next/router';
 import { defaultOptions } from '@/components/MySelect/constants';
 import { CatalogsType } from '@/components/MySelect/types';
-import { FiltersType, VacancyType } from '@/types/mainTypes';
+import {
+  FiltersType,
+  VacanciesPropsType,
+  VacancyType,
+} from '@/types/mainTypes';
 import { itemsPerPage } from '@/components/PagitationContainer/constants';
 
 const defaultFilters: FiltersType = {
@@ -23,31 +27,35 @@ const defaultFilters: FiltersType = {
   salaryTo: '',
 };
 
-export default function Vacancies() {
-  const [vacancies, setVacancies] = useState<Array<VacancyType> | null>(null);
+export default function Vacancies({ data, count }: VacanciesPropsType) {
+  const [vacancies, setVacancies] = useState<Array<VacancyType>>(data);
   const [filters, setFilters] = useState(defaultFilters);
   const [searchingVacancy, setSearchingVacancy] = useState('');
-  const [vacanciesCount, setVacanciesCount] = useState(0);
+  const [vacanciesCount, setVacanciesCount] = useState(count);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isFiltersOpened, setIsFiltersOpened] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    const { query } = router;
-    const updatedFilters = { ...filters };
+    const updatedFilters = { ...filters, keyword: '' };
+    const urlParams = new URLSearchParams(router.asPath.split('?')[1]);
+    const salaryTo = urlParams.get('salaryTo');
+    const salaryFrom = urlParams.get('salaryFrom');
+    const catalogues = urlParams.get('catalogues');
+    const keyword = urlParams.get('keyword');
 
-    if (query.salaryFrom) {
-      updatedFilters.salaryFrom = +query.salaryFrom;
+    if (salaryTo) {
+      updatedFilters.salaryTo = +salaryTo;
     }
-    if (query.salaryTo) {
-      updatedFilters.salaryTo = +query.salaryTo;
+    if (salaryFrom) {
+      updatedFilters.salaryFrom = +salaryFrom;
     }
-    if (query.catalogues) {
+    if (catalogues) {
       const catalog: CatalogsType | undefined = defaultOptions.find(
         (catalog) => {
           // @ts-ignore
-          return catalog.key === +query.catalogues;
+          return catalog.key === +catalogues;
         }
       );
       if (!catalog) {
@@ -59,18 +67,18 @@ export default function Vacancies() {
         };
       }
     }
-    if (query.keyword) {
-      // @ts-ignore
-      setSearchingVacancy(query.keyword);
+    if (keyword) {
+      updatedFilters.keyword = keyword;
     }
-    setFilters(updatedFilters);
-  }, [router.query]);
-
-  useEffect(() => {
     const asyncFunc = async () => {
       setIsLoading(true);
       try {
-        const response = await VacancyService.getVacancies();
+        const response = await VacancyService.getVacancies({
+          salaryFrom: updatedFilters.salaryFrom,
+          salaryTo: updatedFilters.salaryTo,
+          catalogues: updatedFilters.department.key,
+          keyword: updatedFilters.keyword,
+        });
         const data = response.data.objects.map((vacancyDescription: any) => {
           return {
             id: vacancyDescription.id,
@@ -89,6 +97,14 @@ export default function Vacancies() {
       }
     };
     asyncFunc();
+    if (keyword) {
+      setSearchingVacancy(keyword);
+    }
+    setFilters({
+      salaryFrom: updatedFilters.salaryFrom,
+      salaryTo: updatedFilters.salaryTo,
+      department: updatedFilters.department,
+    });
   }, []);
 
   const onSetSearchingVacancyHandler = (value: string) => {

@@ -28,3 +28,8 @@ export interface VacancyWithDescriptionType {
   location: string;
   description: string;
 }
+
+export interface VacanciesPropsType {
+  data: VacancyType[];
+  count: number;
+}

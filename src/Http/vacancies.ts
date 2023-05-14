@@ -8,7 +8,7 @@ const defaultQuery = {
   salaryTo: '',
   keyword: '',
   catalogues: defaultCategory,
-  page: 1,
+  page: 0,
 };
 
 export const VacancyService = {
@@ -37,7 +37,7 @@ export const VacancyService = {
       queryString.push(`catalogues=${defaultCategory}`);
     }
     if (query.page) {
-      queryString.push(`page=${query.page}`);
+      queryString.push(`page=${query.page - 1}`);
     }
     const accessToken = localStorage.getItem('access_token');
 
