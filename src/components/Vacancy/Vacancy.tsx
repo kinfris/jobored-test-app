@@ -57,22 +57,24 @@ export const Vacancy = ({ vacancy, callback }: PropsType) => {
   };
 
   return (
-    <div className={styles.vacancy_item}>
+    <div className={styles.vacancy_item} data-elem={`vacancy-${vacancy.id}`}>
       <div className={styles.vacancy_heading}>
         <Link className={styles.vacancy_title} href={`vacancies/${vacancy.id}`}>
           {vacancy.profession}
         </Link>
         {!isFavorite ? (
-          <div onClick={addToFavorites}>
-            <EmptyStartIcon
-              data-elem={`vacancy-${vacancy.id}-shortlist-button`}
-            />
+          <div
+            onClick={addToFavorites}
+            data-elem={`vacancy-${vacancy.id}-shortlist-button`}
+          >
+            <EmptyStartIcon />
           </div>
         ) : (
-          <div onClick={removeFromFavorites}>
-            <FilledStartIcon
-              data-elem={`vacancy-${vacancy.id}-shortlist-button`}
-            />
+          <div
+            onClick={removeFromFavorites}
+            data-elem={`vacancy-${vacancy.id}-shortlist-button`}
+          >
+            <FilledStartIcon />
           </div>
         )}
       </div>

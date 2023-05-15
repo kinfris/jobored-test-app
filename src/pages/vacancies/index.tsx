@@ -276,7 +276,12 @@ export default function Vacancies({ data, count }: VacanciesPropsType) {
             callback={changeStateValue}
           />
         </div>
-        <CustomButton content="Применить" callback={applyFilters} fullwidth />
+        <CustomButton
+          content="Применить"
+          callback={applyFilters}
+          fullwidth
+          dataElem
+        />
         <div className={styles.open_close_filters_btn}>
           <CustomButton
             content="Закрыть фильтры"
@@ -310,12 +315,7 @@ export default function Vacancies({ data, count }: VacanciesPropsType) {
                 {vacancies.map((vacancy) => {
                   return (
                     <div key={vacancy.id}>
-                      {vacancy && (
-                        <Vacancy
-                          vacancy={vacancy}
-                          data-elem={`vacancy-${vacancy.id}`}
-                        />
-                      )}
+                      {vacancy && <Vacancy vacancy={vacancy} />}
                     </div>
                   );
                 })}

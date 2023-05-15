@@ -36,11 +36,7 @@ export const InputSearch = ({ value, onChange, callback }: PropsType) => {
           data-elem="search-input"
         />
       </div>
-      <CustomButton
-        content="Поиск"
-        callback={onSearchHandle}
-        data-elem="search-button"
-      />
+      <CustomButton content="Поиск" callback={onSearchHandle} dataElem />
     </div>
   );
 };

@@ -40,7 +40,7 @@ export const NumberInput = ({ title, name, value, callback }: PropsType) => {
         onBlur={onInputBlur}
         value={value}
         onChange={onChangeHandler}
-        data-elem={name === 'От' ? 'salary-from-input' : 'salary-to-input'}
+        data-elem={title === 'От' ? 'salary-from-input' : 'salary-to-input'}
       />
       <div className={styles.buttons_wrapper}>
         <div onClick={increment} className={styles.arrow}>
