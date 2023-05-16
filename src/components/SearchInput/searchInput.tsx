@@ -1,7 +1,7 @@
 import styles from './searchInput.module.scss';
 import { ChangeEvent, useState } from 'react';
 import { CustomButton } from '@/components/CustomButton/customButton';
-import { SearchIcon } from '@/components/icons/searchIcon';
+import { SearchIcon } from '@/components/Icons/searchIcon';
 import { PropsType } from './types';
 
 export const InputSearch = ({ value, onChange, callback }: PropsType) => {

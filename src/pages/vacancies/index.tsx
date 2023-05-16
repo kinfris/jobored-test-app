@@ -9,7 +9,7 @@ import { VacancyService } from '@/Http/vacancies';
 import { PaginationContainer } from '@/components/PagitationContainer/pagitanionContainer';
 import { LinearProgress } from '@mui/material';
 import not_found from '../../../public/not_found.png';
-import { CrossIcon } from '@/components/icons/crossIcon';
+import { CrossIcon } from '@/components/Icons/crossIcon';
 import { MySelect } from '@/components/MySelect/mySelect';
 import { useRouter } from 'next/router';
 import { defaultOptions } from '@/components/MySelect/constants';

@@ -1,9 +1,9 @@
 import styles from './vacancy.module.scss';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { EmptyStartIcon } from '@/components/icons/epmptyStarIcon';
-import { FilledStartIcon } from '@/components/icons/filledStarIcon';
-import { LocationIcon } from '@/components/icons/locationIcon';
+import { EmptyStartIcon } from '@/components/Icons/epmptyStarIcon';
+import { FilledStartIcon } from '@/components/Icons/filledStarIcon';
+import { LocationIcon } from '@/components/Icons/locationIcon';
 import { PropsType } from './types';
 
 export const Vacancy = ({ vacancy, callback }: PropsType) => {
@@ -63,19 +63,19 @@ export const Vacancy = ({ vacancy, callback }: PropsType) => {
           {vacancy.profession}
         </Link>
         {!isFavorite ? (
-          <div
+          <button
             onClick={addToFavorites}
             data-elem={`vacancy-${vacancy.id}-shortlist-button`}
           >
             <EmptyStartIcon />
-          </div>
+          </button>
         ) : (
-          <div
+          <button
             onClick={removeFromFavorites}
             data-elem={`vacancy-${vacancy.id}-shortlist-button`}
           >
             <FilledStartIcon />
-          </div>
+          </button>
         )}
       </div>
       <div className={styles.vacancy_description}>

@@ -16,6 +16,12 @@
   display: flex;
   justify-content: space-between;
 
+  button{
+    border: none;
+    outline: none;
+    background-color: transparent;
+  }
+
   svg {
     cursor: pointer;
   }

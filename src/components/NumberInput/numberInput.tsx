@@ -1,7 +1,7 @@
 import styles from './numberInput.module.scss';
 import { ChangeEvent, useState } from 'react';
-import { ButtonUpIcon } from '@/components/icons/buttonUpIcon';
-import { ButtonDownIcon } from '@/components/icons/buttonDownIcon';
+import { ButtonUpIcon } from '@/components/Icons/buttonUpIcon';
+import { ButtonDownIcon } from '@/components/Icons/buttonDownIcon';
 import { PropsType } from './types';
 
 export const NumberInput = ({ title, name, value, callback }: PropsType) => {

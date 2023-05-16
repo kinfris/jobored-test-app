@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { UnstyledButton, Menu, Group } from '@mantine/core';
 import styles from './mySelect.module.scss';
-import { ArrowDownIcon } from '@/components/icons/arrowDownIcon';
+import { ArrowDownIcon } from '@/components/Icons/arrowDownIcon';
 import { VacancyService } from '@/Http/vacancies';
 import { defaultOptions } from './constants';
 import { PropsType } from './types';

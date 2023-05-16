@@ -3,9 +3,9 @@ import { VacancyService } from '@/Http/vacancies';
 import React, { useEffect, useState } from 'react';
 import { LinearProgress } from '@mui/material';
 import { useRouter } from 'next/router';
-import { FilledStartIcon } from '@/components/icons/filledStarIcon';
-import { EmptyStartIcon } from '@/components/icons/epmptyStarIcon';
-import { LocationIcon } from '@/components/icons/locationIcon';
+import { FilledStartIcon } from '@/components/Icons/filledStarIcon';
+import { EmptyStartIcon } from '@/components/Icons/epmptyStarIcon';
+import { LocationIcon } from '@/components/Icons/locationIcon';
 import { VacancyWithDescriptionType } from '@/types/mainTypes';
 
 export default function Vacancy() {
@@ -105,17 +105,19 @@ export default function Vacancy() {
         <div className={styles.vacancy_heading}>
           <div className={styles.vacancy_title}>{vacancy.profession}</div>
           {!isFavorite ? (
-            <div onClick={addToFavorites}>
-              <EmptyStartIcon
-                data-elem={`vacancy-${vacancy.id}-shortlist-button`}
-              />
-            </div>
+            <button
+              onClick={addToFavorites}
+              data-elem={`vacancy-${vacancy.id}-shortlist-button`}
+            >
+              <EmptyStartIcon />
+            </button>
           ) : (
-            <div onClick={removeFromFavorites}>
-              <FilledStartIcon
-                data-elem={`vacancy-${vacancy.id}-shortlist-button`}
-              />
-            </div>
+            <button
+              onClick={removeFromFavorites}
+              data-elem={`vacancy-${vacancy.id}-shortlist-button`}
+            >
+              <FilledStartIcon />
+            </button>
           )}
         </div>
         <div className={styles.vacancy_description}>
